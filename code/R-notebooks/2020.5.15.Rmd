@@ -1,0 +1,733 @@
+---
+title: PCA of RMR data from metabolic cages
+author: Sumeed Manzoor<br>[Chang Lab](https://changlab.uchicago.edu/) at the University of Chicago
+date: May 15, 2020, *updated `r format(Sys.Date(), '%b %d, %Y')`*
+output:
+  html_document:
+    theme: sandstone
+    highlight: textmate
+    code_folding: "show"
+    toc: true
+    toc_float:
+        collapsed: true
+    toc_depth: 3
+    includes:
+        after_body: footer.html
+---
+
+<a href="http://yoyomanzoor.github.io/Chang-Lab-Notebook/" class="fa fa-home"></a>
+
+<a href="https://changlab.uchicago.edu/" alt="The Chang Lab at the University of Chicago"><img src="https://img.shields.io/badge/Chang%20Lab--blue?style=flat-square&logo=jekyll" /></a>
+<a href="https://github.com/Yoyomanzoor/MouseTrapper" alt="Github Repo"><img src="https://img.shields.io/badge/github%20repo--blue?style=flat-square&logo=github" /></a>
+<a href="" alt="tag"><img src="https://img.shields.io/badge/tags-notes%20|%20programming%20|%20Metabolic_Cages%20|%20RMarkdown-lightgrey?style=flat-square" /></a>
+
+---
+
+
+This notebook runs through building PCA for metabolic cage data.
+
+Before starting, a conda environment is required.  
+See bottom of this notebook for the development environment for MouseTrapper.py.
+
+Useful docs:
+
+- Plotting PCA (Principal Component Analysis) <a href="https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_pca.html" target="_blank" class="fa fa-book"></a>
+
+# dataset {.tabset .tabset-pills}
+
+## Overview
+
+These datasets are from RMR data collected for mice after introduction to the metabolic cages (days 0-6, see image).
+
+<img src="images/Experiment overview.png?3" alt="overview" style="width: 900px"/>
+
+## SPF
+
+Start of <br>Met Cage run | Metabolic<br>Cage # | Ear Tag | DOB      | Gender | Genotype   | Body Mass on<br>BMR day (g)
+--------------------------|---------------------|---------|----------|--------|------------|----------------------------
+3/10/2020                 | 1                   | 1555    | 11/18/19 | M      | WT         | 26.4
+3/10/2020                 | 2                   | 1692    | 12/06/19 | M      | WT         | 25.6
+3/10/2020                 | 3                   | 1693    | 12/06/19 | M      | WT         | 24.7
+3/10/2020                 | 4                   | 1695    | 12/06/19 | M      | WT         | 25.6
+3/10/2020                 | 5                   | 1699    | 12/06/19 | M      | WT         | 28.7
+3/10/2020                 | 6                   | 1556    | 11/18/19 | M      | L-Bmal1-KO | 26.2
+3/10/2020                 | 9                   | 1557    | 11/18/19 | M      | L-Bmal1-KO | 27.1
+3/10/2020                 | 10                  | 1558    | 11/18/19 | M      | L-Bmal1-KO | 26.9
+3/10/2020                 | 11                  | 1559    | 11/18/19 | M      | L-Bmal1-KO | 24.7
+3/10/2020                 | 12                  | 1691    | 12/06/19 | M      | L-Bmal1-KO | 28
+3/10/2020                 | 13                  | 1694    | 12/06/19 | M      | L-Bmal1-KO | 26.4
+3/10/2020                 | 14                  | 1700    | 12/06/19 | M      | L-Bmal1-KO | 27.7
+
+## GF
+
+ Cage | Ear Tag |     Genotype     |   GF condition, day 6   | GF condition, day 10 
+------|---------|------------------|-------------------------|----------------------
+  1   |  5650   |    L-Bmal1-KO    |           GF            |    contaminated     
+  2   |   976   |        WT        |           GF            |         GF          
+  3   |   977   |        WT        |           GF            |    contaminated     
+  4   |   990   |    L-Bmal1-KO    |   likely contaminated   | likely contaminated     
+  5   |   979   |    L-Bmal1-KO    |           GF            |    contaminated     
+  6   |   978   |    L-Bmal1-KO    |           GF            |    contaminated     
+
+  For the first half of the experiment, only cage 4 had contamination. For the second leg of the experiment, cages 1,3,5 and 6 were contaminated, and it is likely cage 4 was also contaminated.
+
+See the 16S rDNA gel below.
+
+<img src="images/1-10-20_2.png?2" alt="gel" style="width: 400px"/>
+
+# libraries
+
+```{r setup}
+reqpkg <- c("ggplot2","ggfortify","ggpubr","dplyr","magrittr","reshape2","tibble","rgl","lfda")
+for (i in reqpkg) {
+	print(i)
+	print(packageVersion(i))
+	suppressWarnings(suppressMessages(library(i, quietly=T, verbose=T, warn.conflicts=F,character.only=T)))
+}
+
+theme_set(theme_pubr())
+knitr::knit_hooks$set(webgl = hook_webgl)
+```
+
+# create data
+
+This is a shell script that calls a python script to interpret the macro13 output to usable data by R.
+
+```{r, eval=FALSE}
+shell("conda activate met_cages_development && cd py && python SPF_vs_GF.py")
+```
+
+The script pulls the last 2 days of data for both experiments, and procures a separate dataset for the day time and night time values.
+
+Bodymass information is also exported but is unused in this notebook. The data is pointed to `/data/R/` to dump files for R.
+
+<div align="center">`SPF_vs_GF.py`</div>
+
+```python
+#!/usr/bin/env python
+
+"""
+A CLI python script that uses the mousetrapper library to prepare SPF vs GF mice data for import to R.
+Must be run from same directory.
+"""
+
+import argparse
+import numpy as np
+import pandas as pd
+
+import lib.mousetrapper as mt
+
+__author__ = "Sumeed Yoyo Manzoor"
+__email__ = "smanzoor@uchicago.edu"
+__version__ = "0.0.1"
+__experiment__ = "6 GF mice (10/12/2019) vs 12 SPF mice (3/10/2020)"
+
+datasets = "../datasets/"
+data = "../data/"
+outfolder = data + "R/"
+
+experiment_GF_RMR = mt.Experiment.experiment(
+    info="""6 GF mice run on Oct. 2019""",
+    RT_data=data + "GFvsSPF/" + "GF_RMR_201912101635_rt.csv",
+    macro13_data=data + "GFvsSPF/" + "gf_rmr_201912101635_macro_One-Click Macro V2.32.2-slice3-VOC.mac_1.csv", 
+    t_ctrl={"GF":[1,2,3,4,5,6]},
+    t_exp={"SPF":[]},
+    groups={
+        "GF":[1,2,3,4,5,6],
+        "SPF":[]
+    },
+    meta=["GF","GF","GF","GF","GF","GF"],
+    covar=[31.2,28.2,27.4,27.8,27.5,27.1],
+    verbose=True
+    )
+
+experiment_SPF_RMR = mt.Experiment.experiment(
+    info="""Second run with revised protocol, WT vs L-Bmal1-KO""",
+    RT_data=datasets + "Bmal_SPF_KF_RMR_2020-03-10_14_23_rt.csv",
+    macro13_data=datasets + "bmal_spf_kf_rmr_2020-03-10_14_23_macro_One-Click Macro V2.32.2-slice3-VOC.mac_1.csv",
+    t_ctrl={"SPF WT":np.arange(1,6).tolist()},
+    t_exp={"SPF L-Bmal1-KO":[6] + np.arange(9,15).tolist()},
+    groups={
+        "SPF WT":np.arange(1,6).tolist(),
+        "SPF L-Bmal1-KO":[6] + np.arange(9,15).tolist()
+    },
+    meta=np.array(["WT","L-Bmal1-KO"]).repeat([5,7]).tolist(),
+    covar=[26.4,25.6,24.7,25.6,28.7,26.2,27.1,26.9,24.7,28,26.4,27.7],
+    verbose=True
+    )
+
+experiment_GF_RMR.macro13_lightcycles(days=2)
+experiment_SPF_RMR.macro13_lightcycles(days=2)
+
+experiment_GF_RMR.macro13_dark.to_csv(outfolder + "GF_dark.csv", index=False)
+experiment_GF_RMR.macro13_light.to_csv(outfolder + "GF_light.csv", index=False)
+pd.DataFrame({"covar":experiment_GF_RMR.covar}).to_csv(outfolder + "GF_covar.csv", index=False)
+
+experiment_SPF_RMR.macro13_dark.to_csv(outfolder + "SPF_dark.csv", index=False)
+experiment_SPF_RMR.macro13_light.to_csv(outfolder + "SPF_light.csv", index=False)
+pd.DataFrame({"covar":experiment_SPF_RMR.covar}).to_csv(outfolder + "SPF_covar.csv", index=False)
+```
+
+# import data
+
+```{r}
+SPF_dark <- read.csv2("data/R/SPF_dark.csv", sep = ",") %>% 
+  set_colnames(paste0("SPF_",colnames(.)))
+SPF_light <- read.csv2("data/R/SPF_light.csv", sep = ",") %>% 
+  set_colnames(paste0("SPF_",colnames(.)))
+SPF_covar <- read.csv2("data/R/SPF_covar.csv", sep = ",")
+
+GF_dark <- read.csv2("data/R/GF_dark.csv", sep = ",")
+GF_light <- read.csv2("data/R/GF_light.csv", sep = ",") %>% 
+  set_colnames(paste0("GF_",colnames(.)))
+GF_covar <- read.csv2("data/R/GF_covar.csv", sep = ",") %>% 
+  set_colnames(paste0("GF_",colnames(.)))
+```
+
+# functions
+
+```{r}
+pca_mutate <- function(data, channel) {
+  df <- data %>% select(contains(channel))
+  SPF <- c(df[,8], df[,9], df[,10], df[,11], df[,12])
+  GF <- c(df[,13], df[,14], df[,15], df[,16], df[,17])
+  df <- list(SPF=SPF, GF=GF) %>% plyr::ldply(rbind) %>% t() %>% as.data.frame() %>% set_colnames(c("SPF","GF")) %>% slice(-1) %>% 
+    mutate_all(function(x) as.numeric(as.character(x))) %>% 
+    melt() %>% na.omit()
+  
+  return(df)
+}
+
+plot_pca <- function(pca, data, title="") {
+  autoplot(pca, data = na.omit(data), colour = "id", loadings = TRUE, loadings.colour = "black", loadings.label = TRUE, loadings.label.colour = "black", loadings.label.size = 5) + ggtitle(title)
+}
+
+graph_groups <- function(data, channel, title="") {
+  df <- data %>% select(contains(channel))
+  df.observation <- 1:nrow(df)
+  SPF <- c(df[,8], df[,9], df[,10], df[,11], df[,12])
+  GF <- c(df[,13], df[,14], df[,15], df[,16], df[,17])
+  df <- list(SPF=SPF, GF=GF) %>% plyr::ldply(rbind) %>% t() %>% 
+    as.data.frame() %>% set_colnames(c("SPF","GF")) %>% slice(-1) %>%
+    mutate_all(function(x) as.numeric(as.character(x))) %>% melt()
+  df$observation <- rep(df.observation, 10)
+  ggplot(df, aes(x=observation, y=value, color=variable)) + 
+    ggtitle(title) + 
+    geom_smooth()
+}
+
+graph_mice <- function(data, channel, title="") {
+  df <- dark %>% select(contains(channel))
+  df.observation <- 1:nrow(df)
+  SPF <- c(df[,8], df[,9], df[,10], df[,11], df[,12])
+  GF <- c(df[,13], df[,14], df[,15], df[,16], df[,17])
+  df <- list(SPF=SPF, GF=GF) %>% plyr::ldply(rbind) %>% t() %>% as.data.frame() %>% set_colnames(c("SPF","GF")) %>% slice(-1) %>% 
+    mutate_all(function(x) as.numeric(as.character(x)))
+  df <- melt(df)
+  df$observation <- rep(df.observation, 10)
+  df$mouse <- c(rep("SPF_1", length(df.observation)), rep("SPF_2", length(df.observation)), rep("SPF_3", length(df.observation)), rep("SPF_4", length(df.observation)), rep("SPF_5", length(df.observation)), rep("WT_1", length(df.observation)), rep("WT_2", length(df.observation)), rep("WT_3", length(df.observation)), rep("WT_4", length(df.observation)), rep("WT_5", length(df.observation)))
+  ggplot(df, aes(x=observation, y=value, color=mouse)) + 
+    geom_line()
+}
+```
+
+# data prep
+
+```{r}
+light <- SPF_light %>% 
+  bind_cols(GF_light) %>% 
+  select(-contains(c("Enviro", "Time"))) %>% 
+  mutate_all(function(x) as.numeric(as.character(x)))
+
+dark <- SPF_dark %>% 
+  bind_cols(GF_dark) %>% 
+  select(-contains(c("Enviro", "Time"))) %>% 
+  mutate_all(function(x) as.numeric(as.character(x)))
+```
+
+# basic graphs {.tabset .tabset-pills}
+
+Some graphs to look at the data.
+
+## Light {.tabset .tabset-pills}
+
+### Hide
+
+Select a tab above to view
+
+### VO2
+
+```{r}
+graph_groups(light, "VO2", title="Light VO2 by group")
+```
+
+```{r}
+graph_mice(light, "VO2", title="Light VO2 by mouse")
+```
+
+### RQ
+
+```{r}
+graph_groups(light, "RQ", title="Light RQ by group")
+```
+
+```{r}
+graph_mice(light, "RQ", title="Light RQ by mouse")
+```
+
+### BodyMass
+
+```{r}
+graph_groups(light, "BodyMass", title="Light BodyMass by group")
+```
+
+```{r}
+graph_mice(light, "BodyMass", title="Light BodyMass by mouse")
+```
+
+### Food
+
+```{r}
+graph_groups(light, "Food", title="Light Food by group")
+```
+
+```{r}
+graph_mice(light, "Food", title="Light Food by mouse")
+```
+
+### Water
+
+```{r}
+graph_groups(light, "Water", title="Light Water by group")
+```
+
+```{r}
+graph_mice(light, "Water", title="Light Water by mouse")
+```
+
+### PedMeters
+
+```{r}
+graph_groups(light, "PedMeters_R", title="Light PedMeters by group")
+```
+
+```{r}
+graph_mice(light, "PedMeters_R", title="Light PedMeters by mouse")
+```
+
+## Dark {.tabset .tabset-pills}
+
+### Hide
+
+Select a tab above to view
+
+### VO2
+
+```{r}
+graph_groups(dark, "VO2", title="Dark VO2 by group")
+```
+
+```{r}
+graph_mice(dark, "VO2", title="Dark VO2 by mouse")
+```
+
+### RQ
+
+```{r}
+graph_groups(dark, "RQ", title="Dark RQ by group")
+```
+
+```{r}
+graph_mice(dark, "RQ", title="Dark RQ by mouse")
+```
+
+### BodyMass
+
+```{r}
+graph_groups(dark, "BodyMass", title="Dark BodyMass by group")
+```
+
+```{r}
+graph_mice(dark, "BodyMass", title="Dark BodyMass by mouse")
+```
+
+### Food
+
+```{r}
+graph_groups(dark, "Food", title="Dark Food by group")
+```
+
+```{r}
+graph_mice(dark, "Food", title="Dark Food by mouse")
+```
+
+### Water
+
+```{r}
+graph_groups(dark, "Water", title="Dark Water by group")
+```
+
+```{r}
+graph_mice(dark, "Water", title="Dark Water by mouse")
+```
+
+### PedMeters
+
+```{r}
+graph_groups(dark, "PedMeters_R", title="Dark PedMeters by group")
+```
+
+```{r}
+graph_mice(dark, "PedMeters_R", title="Dark PedMeters by mouse")
+```
+
+# PCA {.tabset .tabset-pills}
+
+PCA is run for light cycle and dark cycle values.
+
+**Important to note** for most of the models I build below, I need the same number of mice in both groups (NAs are not allowed). Thus, I decided to use the five GF mice that remained GF, and the last 5 KO mice for SPF.
+
+## Light
+
+```{r, message=FALSE, warning=FALSE}
+VO2_light <- pca_mutate(light, "VO2")
+RQ_light <- pca_mutate(light, "RQ")
+Food_light <- pca_mutate(light, "Food")
+Water_light <- pca_mutate(light, "Water")
+BM_light <- pca_mutate(light, "BodyMass")
+PedMeters_light <- pca_mutate(light, "PedMeters_R")
+
+df_light <- RQ_light %>% set_colnames(c("id","RQ")) %>% add_column(VO2=VO2_light$value) %>% add_column(FoodIn=Food_light$value) %>% add_column(WaterIn=Water_light$value) %>% add_column(BodyMass=BM_light$value) %>% add_column(PedMeters=PedMeters_light$value)
+```
+
+PCA of all variables
+
+```{r}
+df_light %>% select(-id) %>% prcomp(scale. = TRUE) %>% plot_pca(df_light, title = "PCA of all variables, light cycle")
+```
+
+Based on eigenvalues, some variables are driving differences more than others, or may be used alone to look deeper at how the data clusters.
+
+Since body mass may be disproportionately driving differences in PCA (repeated measures for a generally low variance variable), PCA is run without it.
+
+```{r}
+df_light %>% select(-id,-BodyMass) %>% prcomp(scale. = TRUE) %>% plot_pca(df_light, title="PCA of all variables besides BM, light cycle")
+```
+
+VO2 vs RQ
+
+```{r}
+df_light %>% select(VO2,RQ) %>% prcomp(scale. = TRUE) %>% plot_pca(df_light, title="PCA VO2 and RQ, light cycle")
+```
+
+Food vs Water
+
+```{r}
+df_light %>% select(FoodIn,WaterIn) %>% prcomp(scale. = TRUE) %>% plot_pca(df_light, title="PCA Food and Water, light cycle")
+```
+
+## Dark
+
+```{r, message=FALSE, warning=FALSE}
+VO2_dark <- pca_mutate(dark, "VO2")
+RQ_dark <- pca_mutate(dark, "RQ")
+Food_dark <- pca_mutate(dark, "Food")
+Water_dark <- pca_mutate(dark, "Water")
+BM_dark <- pca_mutate(dark, "BodyMass")
+PedMeters_dark <- pca_mutate(dark, "PedMeters_R")
+
+df_dark <- RQ_dark %>% set_colnames(c("id","RQ")) %>% add_column(VO2=VO2_dark$value) %>% add_column(FoodIn=Food_dark$value) %>% add_column(WaterIn=Water_dark$value) %>% add_column(BodyMass=BM_dark$value) %>% add_column(PedMeters=PedMeters_dark$value)
+```
+
+PCA of all variables
+
+```{r}
+df_dark %>% select(-id) %>% prcomp(scale. = TRUE) %>% plot_pca(df_dark, "PCA of all variables, dark cycle")
+```
+
+Based on eigenvalues, some variables are driving differences more than others, or may be used alone to look deeper at how the data clusters.
+
+Since body mass may be disproportionately driving differences in PCA (repeated measures for a generally low variance variable), PCA is run without it.
+
+```{r}
+df_dark %>% select(-id,-BodyMass) %>% prcomp(scale. = TRUE) %>% plot_pca(df_dark, title="PCA of all variables besides BM, dark cycle")
+```
+
+VO2 vs RQ
+
+```{r}
+df_dark %>% select(VO2,RQ) %>% prcomp(scale. = TRUE) %>% plot_pca(df_dark, title="PCA VO2 and RQ, dark cycle")
+```
+
+Food vs Water
+
+```{r}
+df_dark %>% select(FoodIn,WaterIn) %>% prcomp(scale. = TRUE) %>% plot_pca(df_dark, title="PCA Food and Water, dark cycle")
+```
+
+# Local Fisher Discriminant Analysis (LDFA) {.tabset .tabset-pills}
+
+I attempted to model and plot ldfa. LDFA should give similar results to PCA, with the advantage of being sensitive to multimodality of data, i.e. multiple effects driving an observation, as well as sensitive to distinctiveness in the data that might be lost in reducing dimensions in PCA. In other words, a learning model like LDFA might account for more relationships than a principal component.
+
+More information:
+
+- Tang Y, Cohen J, Local Fisher Discriminant Analysis on Beer Style Clustering. <a href="https://www.gastrograph.com/resources/whitepapers/local-fisher-discriminant-analysis-on-beer-style-clustering.html" target="_blank" class="fa fa-book"></a>
+- Yang Y, Li W, lfda: An R Package for Local Fisher
+Discriminant Analysis and Visualization. <i>The R Journal Vol. XX/YY, AAAA 20ZZ</i> <a href="https://arxiv.org/pdf/1612.09219.pdf" target="_blank" class="ai ai-arxiv"></a>
+
+## Light
+
+```{r}
+model <- lfda(df_light[-1], df_light[, 1], r=3, metric = "plain")
+autoplot(model, data=df_light, frame = T, colour = "id")
+```
+
+```{r, webgl=TRUE}
+plot(model, labels = df_light[, 1])
+```
+
+## Dark
+
+```{r}
+model <- lfda(df_dark[-1], df_dark[, 1], r=3, metric = "plain")
+autoplot(model, data=df_dark, frame = T, colour = "id")
+```
+
+```{r, webgl=TRUE}
+plot(model, labels = df_dark[, 1])
+```
+
+I also attempted Semi-supervised Local Fisher Discriminant Analysis (SELF). It would not finish the model on my laptop, but might compute on a cluster.
+
+```{r, eval=FALSE}
+model <- self(df[-1], df[, 1], beta = 0.1, r=2, metric = "plain")
+autoplot(model, data=df, frame = T, colour = "id")
+```
+
+# session info
+
+```{r, echo=FALSE}
+sessionInfo()
+```
+
+# Python environment
+
+<div align="center">`environment.yml`<i class="far fa-file-code"></i></div>
+
+```YAML
+name: Env5_metcages
+channels:
+  - anaconda
+  - plotly
+  - conda-forge
+  - salilab
+  - defaults
+dependencies:
+  - _r-mutex=1.0.0=anacondar_1
+  - asn1crypto=1.3.0=py37_0
+  - attrs=19.3.0=py_0
+  - backcall=0.1.0=py37_0
+  - blas=1.0=mkl
+  - bleach=3.1.0=py37_0
+  - ca-certificates=2020.1.1=0
+  - certifi=2019.11.28=py37_1
+  - cffi=1.14.0=py37h7a1dbc1_0
+  - chardet=3.0.4=py37_1003
+  - colorama=0.4.3=py_0
+  - cryptography=2.8=py37h7a1dbc1_0
+  - decorator=4.4.2=py_0
+  - defusedxml=0.6.0=py_0
+  - entrypoints=0.3=py37_0
+  - icc_rt=2019.0.0=h0cc432a_1
+  - icu=58.2=ha66f8fd_1
+  - idna=2.8=py37_0
+  - importlib_metadata=1.5.0=py37_0
+  - intel-openmp=2019.4=245
+  - ipykernel=5.1.4=py37h39e3cac_0
+  - ipython=7.13.0=py37h5ca1d4c_0
+  - ipython_genutils=0.2.0=py37_0
+  - ipywidgets=7.5.1=py_0
+  - jedi=0.16.0=py37_1
+  - jinja2=2.11.1=py_0
+  - jpeg=9b=hb83a4c4_2
+  - jsonschema=3.2.0=py37_0
+  - jupyter=1.0.0=py37_7
+  - jupyter_client=6.1.2=py_0
+  - jupyter_console=6.1.0=py_0
+  - jupyter_contrib_core=0.3.3=py_2
+  - jupyter_core=4.6.3=py37_0
+  - jupyter_nbextensions_configurator=0.4.1=py37_0
+  - libpng=1.6.37=h2a8f88b_0
+  - libsodium=1.0.16=h9d3ae62_0
+  - m2w64-bwidget=1.9.10=2
+  - m2w64-bzip2=1.0.6=6
+  - m2w64-expat=2.1.1=2
+  - m2w64-fftw=3.3.4=6
+  - m2w64-flac=1.3.1=3
+  - m2w64-gcc-libgfortran=5.3.0=6
+  - m2w64-gcc-libs=5.3.0=7
+  - m2w64-gcc-libs-core=5.3.0=7
+  - m2w64-gettext=0.19.7=2
+  - m2w64-gmp=6.1.0=2
+  - m2w64-gsl=2.1=2
+  - m2w64-libiconv=1.14=6
+  - m2w64-libjpeg-turbo=1.4.2=3
+  - m2w64-libogg=1.3.2=3
+  - m2w64-libpng=1.6.21=2
+  - m2w64-libsndfile=1.0.26=2
+  - m2w64-libtiff=4.0.6=2
+  - m2w64-libvorbis=1.3.5=2
+  - m2w64-libwinpthread-git=5.0.0.4634.697f757=2
+  - m2w64-libxml2=2.9.3=4
+  - m2w64-mpfr=3.1.4=4
+  - m2w64-nlopt=2.4.2=3
+  - m2w64-openblas=0.2.19=1
+  - m2w64-pcre=8.38=2
+  - m2w64-speex=1.2rc2=3
+  - m2w64-speexdsp=1.2rc3=3
+  - m2w64-tcl=8.6.5=3
+  - m2w64-tk=8.6.5=3
+  - m2w64-tktable=2.10=5
+  - m2w64-wineditline=2.101=5
+  - m2w64-xz=5.2.2=2
+  - m2w64-zlib=1.2.8=10
+  - markupsafe=1.1.1=py37he774522_0
+  - mistune=0.8.4=py37he774522_0
+  - mkl=2019.4=245
+  - mkl-service=2.3.0=py37hb782905_0
+  - mkl_fft=1.0.15=py37h14836fe_0
+  - mkl_random=1.1.0=py37h675688f_0
+  - msys2-conda-epoch=20160418=1
+  - nbconvert=5.6.1=py37_0
+  - nbformat=5.0.4=py_0
+  - notebook=6.0.3=py37_0
+  - numpy=1.17.4=py37h4320e6b_0
+  - numpy-base=1.17.4=py37hc3f5095_0
+  - openssl=1.1.1e=he774522_0
+  - pandas=0.25.3=py37ha925a31_0
+  - pandoc=2.2.3.2=0
+  - pandocfilters=1.4.2=py37_1
+  - parso=0.6.2=py_0
+  - pickleshare=0.7.5=py37_0
+  - pip=20.0.2=py37_1
+  - plotly=4.4.1=py_0
+  - plotly-orca=1.2.1=1
+  - prometheus_client=0.7.1=py_0
+  - prompt-toolkit=3.0.4=py_0
+  - prompt_toolkit=3.0.4=0
+  - psutil=5.6.7=py37he774522_0
+  - pycparser=2.20=py_0
+  - pygments=2.6.1=py_0
+  - pyopenssl=19.1.0=py37_0
+  - pyqt=5.9.2=py37h6538335_2
+  - pyrsistent=0.16.0=py37he774522_0
+  - pysocks=1.7.1=py37_0
+  - python=3.7.5=h8c8aaf0_0
+  - python-dateutil=2.8.1=py_0
+  - pytz=2019.3=py_0
+  - pywin32=227=py37he774522_1
+  - pywinpty=0.5.7=py37_0
+  - pyyaml=5.3.1=py37he774522_0
+  - pyzmq=18.1.1=py37ha925a31_0
+  - qt=5.9.7=vc14h73c81de_0
+  - qtconsole=4.7.2=py_0
+  - qtpy=1.9.0=py_0
+  - r-abind=1.4_5=r36h6115d3f_0
+  - r-assertthat=0.2.1=r36h6115d3f_0
+  - r-base=3.6.1=hf18239d_1
+  - r-bh=1.69.0_1=r36h6115d3f_0
+  - r-bit=1.1_14=r36h6115d3f_0
+  - r-bit64=0.9_7=r36h6115d3f_0
+  - r-blob=1.1.1=r36h6115d3f_0
+  - r-boot=1.3_20=r36h6115d3f_0
+  - r-car=3.0_2=r36h6115d3f_0
+  - r-cardata=3.0_2=r36h6115d3f_0
+  - r-cellranger=1.1.0=r36h6115d3f_0
+  - r-cli=1.1.0=r36h6115d3f_0
+  - r-clipr=0.6.0=r36h6115d3f_0
+  - r-crayon=1.3.4=r36h6115d3f_0
+  - r-curl=3.3=r36h6115d3f_0
+  - r-data.table=1.12.2=r36h6115d3f_0
+  - r-dbi=1.0.0=r36h6115d3f_0
+  - r-dbplyr=1.4.0=r36h6115d3f_0
+  - r-digest=0.6.18=r36h6115d3f_0
+  - r-dplyr=0.8.0.1=r36h6115d3f_0
+  - r-ellipsis=0.1.0=r36h6115d3f_0
+  - r-fansi=0.4.0=r36h6115d3f_0
+  - r-forcats=0.4.0=r36h6115d3f_0
+  - r-foreign=0.8_71=r36h6115d3f_0
+  - r-glue=1.3.1=r36h6115d3f_0
+  - r-haven=2.1.0=r36h6115d3f_0
+  - r-hms=0.4.2=r36h6115d3f_0
+  - r-lattice=0.20_38=r36h6115d3f_0
+  - r-lme4=1.1_21=r36h6115d3f_0
+  - r-magrittr=1.5=r36h6115d3f_4
+  - r-maptools=0.9_5=r36h6115d3f_0
+  - r-mass=7.3_51.3=r36h6115d3f_0
+  - r-matrix=1.2_17=r36h6115d3f_0
+  - r-matrixmodels=0.4_1=r36h6115d3f_4
+  - r-memoise=1.1.0=r36h6115d3f_0
+  - r-mgcv=1.8_28=r36h6115d3f_0
+  - r-minqa=1.2.4=r36h6115d3f_4
+  - r-nlme=3.1_139=r36h6115d3f_0
+  - r-nloptr=1.2.1=r36h6115d3f_0
+  - r-nnet=7.3_12=r36h6115d3f_0
+  - r-openxlsx=4.1.0=r36h6115d3f_0
+  - r-pbkrtest=0.4_7=r36h6115d3f_0
+  - r-pillar=1.3.1=r36h6115d3f_0
+  - r-pkgconfig=2.0.2=r36h6115d3f_0
+  - r-plogr=0.2.0=r36h6115d3f_0
+  - r-prettyunits=1.0.2=r36h6115d3f_0
+  - r-progress=1.2.0=r36h6115d3f_0
+  - r-purrr=0.3.2=r36h6115d3f_0
+  - r-quantreg=5.38=r36h6115d3f_0
+  - r-r6=2.4.0=r36h6115d3f_0
+  - r-rcpp=1.0.1=r36h6115d3f_0
+  - r-rcppeigen=0.3.3.5.0=r36h6115d3f_0
+  - r-readr=1.3.1=r36h6115d3f_0
+  - r-readxl=1.3.1=r36h6115d3f_0
+  - r-rematch=1.0.1=r36h6115d3f_0
+  - r-rio=0.5.16=r36h6115d3f_0
+  - r-rlang=0.3.4=r36h6115d3f_0
+  - r-rsqlite=2.1.1=r36h6115d3f_0
+  - r-sp=1.3_1=r36h6115d3f_0
+  - r-sparsem=1.77=r36h6115d3f_0
+  - r-tibble=2.1.1=r36h6115d3f_0
+  - r-tidyselect=0.2.5=r36h6115d3f_0
+  - r-utf8=1.1.4=r36h6115d3f_0
+  - r-zip=2.0.1=r36h6115d3f_0
+  - requests=2.22.0=py37_1
+  - retrying=1.3.3=py37_2
+  - rpy2=2.9.4=py37r36h39e3cac_0
+  - scipy=1.3.2=py37h29ff71c_0
+  - send2trash=1.5.0=py37_0
+  - setuptools=46.1.3=py37_0
+  - sip=4.19.8=py37h6538335_0
+  - six=1.14.0=py37_0
+  - sqlite=3.31.1=he774522_0
+  - terminado=0.8.3=py37_0
+  - testpath=0.4.4=py_0
+  - tornado=6.0.4=py37he774522_1
+  - traitlets=4.3.3=py37_0
+  - tzlocal=2.0.0=py37_0
+  - urllib3=1.25.8=py37_0
+  - vc=14.1=h0510ff6_4
+  - vs2015_runtime=14.16.27012=hf0eaf9b_1
+  - wcwidth=0.1.9=py_0
+  - webencodings=0.5.1=py37_1
+  - wheel=0.34.2=py37_0
+  - widgetsnbextension=3.5.1=py37_0
+  - win_inet_pton=1.1.0=py37_0
+  - wincertstore=0.2=py37_0
+  - winpty=0.4.3=4
+  - xmltodict=0.12.0=py_0
+  - yaml=0.1.7=hc54c509_2
+  - zeromq=4.3.1=h33f27b4_3
+  - zipp=2.2.0=py_0
+  - zlib=1.2.11=h62dcd97_3
+  - pip:
+    - toolz==0.10.0
+prefix: C:\Users\smanz\Anaconda3\envs\Env5_metcages
+
+
+```

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mv [0-9]*.html ../../notebook

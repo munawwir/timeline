@@ -1,0 +1,15 @@
+# Ignore certain pages:
+
+
+
+# Ignore microsoft office temp files
+
+~$*
+
+# Ignore R stuff
+
+.Rproj.user
+
+# Ignore python stuff
+
+*.ipynb_checkpoints

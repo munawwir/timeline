@@ -1,0 +1,88 @@
+---
+title: Setting up R in Midway to render R notebooks
+author: Sumeed Manzoor<br>[Chang Lab](https://changlab.uchicago.edu/) at the University of Chicago
+date: May 14, 2020, *updated `r format(Sys.Date(), '%d %b, %Y')`*
+output: 
+  html_document:
+    theme: sandstone
+    highlight: textmate
+    toc: true
+    toc_float:
+        collapsed: true
+    toc_depth: 3
+    includes:
+        after_body: footer.html
+---
+
+<a href="http://yoyomanzoor.github.io/Chang-Lab-Notebook/" class="fa fa-home"></a>
+
+<a href="https://changlab.uchicago.edu/" alt="The Chang Lab at the University of Chicago"><img src="https://img.shields.io/badge/Chang%20Lab--blue?style=flat-square&logo=jekyll" /></a>
+<a href="https://github.com/Yoyomanzoor/MouseTrapper" alt="Github Repo"><img src="https://img.shields.io/badge/github%20repo--blueviolet?style=flat-square&logo=github" /></a>
+<a href="" alt="tag"><img src="https://img.shields.io/badge/tags-programming%20|%20tutorial%20|%20rmarkdown-lightgrey?style=flat-square" /></a>
+
+A recent issue I have is R on Midway - after setting up R with all libraries for (what I thought would be) the last time, just today I found that R 3.2.1 (which I was doing development in) is no longer on Midway. In the future, this may be an issue, where R environments will need to be setup again to run notebooks.
+
+Today I switched to R 3.3.2.
+
+For now, a major challenge was setting up pandoc for rmarkdown in R. Here's how to install it without the convenience of Rstudio or windows/MacOS (which have installers ready-made).
+
+[Download](https://github.com/jgm/pandoc/releases/tag/2.9.2.1) pandoc tarball for linux to a convenient location (I download to `~/Downloads`).
+
+```bash
+wget https://github.com/jgm/pandoc/releases/download/2.9.2.1/pandoc-2.9.2.1-linux-amd64.tar.gz
+```
+
+Install
+
+```bash
+tar xvzf pandoc-2.9.2.1-linux-amd64.tar.gz --strip-components 1 -C $HOME/.local
+```
+
+Make sure paths are updated.
+
+<div align="center">`~/.bashrc`</div>
+
+```bash
+export PATH="$PATH:/home/$USER/.local/bin"
+```
+
+Start R and install packages for version of R. If shared resources are not available, that means the package is installed on Midway, but is not available for R, so just install those packages manually. They should install to home dir.
+
+Packages can be checked for availability via
+
+```R
+'foo' %in% available.packages()
+```
+
+Notes on knitting doc:
+
+pandoc *will not* fulfill any http requests for image src when called from sbatch from some reason (I'm guessing the server isn't capable of internet requests). Any resources will need to be available locally and able to be sourced in html. Might be a good idea to keep a single folder in home dir with all shields badges, images, etc.
+
+knitting can be done by adding a command to bash profile (see [notes](https://yoyomanzoor.github.io/Chang-Lab-Notebook/notebook/2020.4.25.html)), or can be done via sbatch submission if it is resource heavy, which can be run via `sbatch ./knit_rmd.sbatch`.
+
+<div align="center">`knit_rmd.sbatch`</div>
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=knit_featurecounts_normalization
+#SBATCH --output=LOGS/featurecounts_normalization_sbatch.out
+#SBATCH --error=LOGS/featurecounts_normalization_sbatch.error
+#SBATCH --time=00:60:00
+#SBATCH --partition=broadwl
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=4
+#SBATCH --mem-per-cpu=8000
+
+#######################################
+# Knit Rmd to normalize featurecounts #
+# By Sumeed Yoyo Manzoor              #
+#     The Chang Lab                   #
+#         @ The University of Chicago #
+#######################################
+
+# R version 3.6.1
+# See May 14 notes for setting up R environment if broken
+
+module load R
+R -e "rmarkdown::render('featurecounts_normalization.Rmd')"
+```
