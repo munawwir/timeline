@@ -11,45 +11,44 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Begin Jekyll SEO tag v2.5.0 -->
-    <title>Yoyomanzoor Chang Lab Notebook | Yoyomanzoor-Chang-Lab-Notebook</title>
+    <title>Seerah Timeline | Seerah-Timeline</title>
     <meta name="generator" content="Jekyll v3.8.5" />
-    <meta property="og:title" content="Lab Notebook" />
+    <meta property="og:title" content="Timeline" />
     <meta property="og:locale" content="en_US" />
-    <link rel="canonical" href="https://yoyomanzoor.github.io/Chang-Lab-Notebook/" />
-    <meta property="og:url" content="https://yoyomanzoor.github.io/Chang-Lab-Notebook/" />
-    <meta property="og:site_name" content="Yoyomanzoor-Chang-Lab-Notebook" />
+    <link rel="canonical" href="https://munawwir.github.io/timeline/" />
+    <meta property="og:url" content="https://munawwir.github.io/timeline/" />
+    <meta property="og:site_name" content="Munawwir-Seerah-timeline" />
     <script type="application/ld+json">
-    {"@type":"WebSite","headline":"Yoyomanzoor Chang Lab Notebook","url":"https://yoyomanzoor.github.io/Chang-Lab-Notebook/","name":"Yoyomanzoor-Chang-Lab-Notebook","@context":"http://schema.org"}</script>
+    {"@type":"WebSite","headline":"Seerah Timeline","url":"https://munawwir.github.io/timeline/","name":"Munawwir-Seerah-timeline","@context":"http://schema.org"}</script>
     <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/Chang-Lab-Notebook/assets/css/style.css?v=d809c76e2f6e766a03e843906627c6d32ceb6981">
+    <link rel="stylesheet" href="/timeline/assets/css/style.css?v=d809c76e2f6e766a03e843906627c6d32ceb6981">
   </head>
   <body>
     <div class="wrapper">
       <header>
-        <h1><a href="https://yoyomanzoor.github.io/Chang-Lab-Notebook/">Yoyo's Lab Notebook</a></h1>
+        <h1><a href="https://munawwir.github.io/timeline/">Seerah Timeline</a></h1>
 
         <p></p>
 
-        <p class="view"><a href="https://github.com/Yoyomanzoor/Chang-Lab-Notebook">View the Project on GitHub (private) <small>Yoyomanzoor/Chang-Lab-Notebook</small></a></p>
+        <p class="view"><a href="https://github.com/munawwir/timeline">View the Project on GitHub <small>Munawwir/timeline</small></a></p>
 
         <!-- Insert all page links here -->
 
-        <!-- <p class="view">SOPs</p>
+        <p class="view">Biographies</p>
 
-        <p class="view"><a href="SOPs/Metabolic Cages Sterilization.html"><i>&mdash;Metabolic Cages Equipment Sterilization</i></a></p>
-        <p class="view"><a href="SOPs/Metabolic Cages Sterilization list.html"><i>&mdash;Metabolic Cages List of items and sterilization methods</i></a></p>
-        <p class="view"><a href="SOPs/Metabolic Cages GF setup and calibration.html"><i>&mdash;Metabolic Cages GF experiment setup and calibration</i></a></p> -->
+        <p class="view"><a href="bio/index.html"><i>&mdash;All Biographies</i></a></p>
+        <p class="view"><a href="bio/chart.html"><i>&mdash;Table View</i></a></p>
 
       </header>
       <section>
-        <h1 id="Chang-Lab-Notebook">Yoyo's Lab Notebook</h1>
-        <h4><a href="https://changlab.uchicago.edu">The Chang Lab</a> at the University of Chicago<br>Knapp Center for Biomedical Discovery</h4>
+        <h1 id="Seerah-Timeline">Seerah Timeline</h1>
+        <h4><a href="https://github.com/munawwir">Yoyo</a> at Darussalam<br>Chicago</h4>
 
         <p></br></p>
 
         <!-- Insert main content here -->
-        
+
         <h2>${header}</h2>
 
         <p>
@@ -59,17 +58,17 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
         </p>
 
         <p>
-          Indexed site only contains some information. For access to complete GitHub repo and notebook, email <a href="mailto:smanzoor@uchicago.edu">smanzoor@uchicago.edu</a>.
+          Email <a href="mailto:yoyomunawwar@gmail.com">yoyomunawwar@gmail.com</a>.
         </p>
 
       </section>
       <footer>
 
-        <p><small>This notebook is maintained by <a href="https://github.com/Yoyomanzoor">Yoyomanzoor</a></small></p>
+        <p><small>This site is maintained by <a href="https://github.com/munawwir">Yoyo</a></small></p>
 
       </footer>
     </div>
-    <script src="/Chang-Lab-Notebook/assets/js/scale.fix.js"></script>
+    <script src="/timeline/assets/js/scale.fix.js"></script>
 
  </body>
 </html>
@@ -95,21 +94,21 @@ def main():
         return(title)
 
     def is_date(string, fuzzy=True):
-        try: 
+        try:
             parse(string, fuzzy=fuzzy)
             return True
         except ValueError:
             return False
 
     EXCLUDED = ['index.html','.ignore', '.header']
-    
+
     parser = argparse.ArgumentParser()
     parser.add_argument("directory")
     parser.add_argument("--header", "--h", help="Provide a string for a custom header for the index. Defaults to the directory name if unused.")
     parser.add_argument("--exclude", "--e", action="store_true", help="Add this flag to add folders and files not to add in created index. File and folder names should be added to a .ignore file with only a newline between names.")
     parser.add_argument("--custom", "--c", action="store_true", help="Add this flag if there are specific custom file names in a .header file.")
     args = parser.parse_args()
-    
+
     os.chdir(args.directory)
 
     if args.exclude:
