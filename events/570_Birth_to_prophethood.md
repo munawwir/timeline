@@ -7,9 +7,9 @@ A summary of chapter 6: From birth to prophethood, since this chapter deals with
 
 ### People mentioned
 
-[Abd al-Muttalib](../bio/497_Abd al_Muttalib.html) | 95, 96, 98  
-[Abdullah](../bio/546_Abdullah.html) | 95, 98  
-[Aminah](../bio/549_Aminah.html) | 95-98  
+[Abd al-Muttalib](../bio/497_Abd al_Muttalib.html) — 95, 96, 98  
+[Abdullah](../bio/546_Abdullah.html) — 95, 98  
+[Aminah](../bio/549_Aminah.html) — 95-98  
 [Thuwaybahؓ](../bio/Thuwaybah.html)  
 
 
