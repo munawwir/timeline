@@ -1,8 +1,8 @@
 ---
 title: Notebook Template
-author: Sumeed Manzoor<br>[Chang Lab](https://changlab.uchicago.edu/) at the University of Chicago
+author: Yoyo<br>[DS]() at the DarusSalam Foundation
 date: April 24, 2020, *updated `r format(Sys.Date(), '%d %b, %Y')`*
-output: 
+output:
   html_document:
     theme: sandstone
     highlight: textmate
@@ -15,14 +15,14 @@ output:
         after_body: footer.html
 ---
 
-<a href="http://yoyomanzoor.github.io/Chang-Lab-Notebook/" class="fa fa-home"></a>
+<a href="" class="fa fa-home"></a>
 
-<a href="https://changlab.uchicago.edu/" alt="The Chang Lab at the University of Chicago"><img src="https://img.shields.io/badge/%E2%80%8F%E2%80%8F%E2%80%8E-Chang%20Lab-blue?style=flat-square&logo=jekyll" /></a>
-<a href="https://github.com/Yoyomanzoor/MouseTrapper" alt="Github Repo"><img src="https://img.shields.io/badge/%E2%80%8F%E2%80%8F%E2%80%8E-github%20repo-blueviolet?style=flat-square&logo=github" /></a>
+<a href="" alt="place"><img src="https://img.shields.io/badge/%E2%80%8F%E2%80%8F%E2%80%8E-Chang%20Lab-blue?style=flat-square&logo=jekyll" /></a>
+<a href="" alt="Github Repo"><img src="https://img.shields.io/badge/%E2%80%8F%E2%80%8F%E2%80%8E-github%20repo-blueviolet?style=flat-square&logo=github" /></a>
 <a href="" alt="tag"><img src="https://img.shields.io/badge/tags-programming%20|%20templates%20|%20rmarkdown-lightgrey?style=flat-square" /></a>
 
 Edit YAML header as necessary:
-theme: You can create css themes yourself, or use presets 
+theme: You can create css themes yourself, or use presets
 
 For detailed information on how to use RMarkdown, see the [cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/).
 
