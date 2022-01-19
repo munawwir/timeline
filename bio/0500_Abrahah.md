@@ -12,7 +12,7 @@ Abrahah was an [Aksumite](https://en.wikipedia.org/wiki/Kingdom_of_Aksum) Christ
 </figure>
 
 <figure>
-  <img src="../img/al_qalis.png" alt="al-Qullays" style="width:100%">
+  <img src="../img/al_qalis.jpg" alt="al-Qullays" style="width:100%">
   <figcaption>Fig.2 - Remnants of al-Qullays in San'a.</figcaption>
 </figure>
 
