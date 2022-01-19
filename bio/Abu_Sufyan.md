@@ -1,6 +1,8 @@
-### Abu Sufyan
-####
+### Abu Sufyan ibn Harb
+#### 565 - 653
 ##### [Timeline](https://munawwir.github.io/timeline)
+
+**أبو سفيان بن حرب بن أمية بن عبد شمس**
 
 ### Overview of involved events and pages
 
