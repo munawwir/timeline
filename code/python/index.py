@@ -35,10 +35,13 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
 
         <!-- Insert all page links here -->
 
-        <p class="view">Biographies</p>
+        <!-- <p class="view">Biographies</p>
 
-        <p class="view"><a href="bio/index.html"><i>&mdash;All Biographies</i></a></p>
-        <p class="view"><a href="bio/chart.html"><i>&mdash;Table View</i></a></p>
+        <p class="view"><a href="bio"><i>&mdash;All Biographies</i></a></p>
+
+        <p class="view">Events</p>
+
+        <p class="view"><a href="events"><i>&mdash;All Biographies</i></a></p> -->
 
       </header>
       <section>
