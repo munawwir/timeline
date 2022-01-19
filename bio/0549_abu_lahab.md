@@ -1,13 +1,12 @@
-### Abd al-Muttalib ibn Hashim
-#### 497 - 578
+### Abu Lahab
+#### 549 - 624
 
-### Family
+He was the uncle of Rasulullah ﷺ and a great enemy of Islam. He is condemned in Surah al-Massad.
 
-He is the grandfather of Rasulullah ﷺ.
+>  تَبَّتْ يَدَآ أَبِى لَهَبٍ وَتَبَّ
 
-### Summary
-
-He had 10 sons, the noblest of which was 'Abdullah.
+> Perish the two hands of Abū Lahab, and perish he!  
+> — Mufti Taqi Usmani
 
 ### Overview of involved events and pages
 

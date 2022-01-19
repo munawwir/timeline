@@ -1,7 +1,7 @@
 ### Thuwaybahؓ
 #### unknown - 629
 
-She was the bondwoman of Abū Lahab.
+She was the bondwoman of [Abū Lahab](0549_abu_lahab.html).
 
 ### Overview of involved events and pages
 
