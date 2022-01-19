@@ -134,9 +134,7 @@ def main():
         fnames = ["<b>" + CUSTOM[i].split("|")[1] + "</b> " + " ".join(CUSTOM[i].split("|")[2:]) if i in CUSTOM.keys() else i for i in fnames]
 
     m_fnames = [i for i in fnames if i[-3:] == ".md"]
-    m_content = [open(i, "r", errors="ignore").read() for i in m_fnames]
-    markdown = dict(zip(m_fnames, ["<b>" + m_content[i].split("\n")[1].split(" ")[1] + "</b> " + " ".join(m_content[i].split("\n")[0].split(" ")[1:]) for i in range(len(m_fnames))]))
-    # markdown = dict(zip(m_fnames, ["<b>" + m_content[i].split("\n")[1].split(" ")[1] + "</b> " + " ".join(m_content[i].split("\n")[0].split(" ")[1:]) + " — " + m_content[i].split("\n")[4] for i in range(len(m_fnames))]))
+    markdown = dict(zip(m_fnames, ["<b>" + open(m_fnames[i], "r", errors="ignore").read().split("\n")[1].split(" ")[1] + "</b> " + " ".join(open(m_fnames[i], "r", errors="ignore").read().split("\n")[0].split(" ")[1:]) for i in range(len(m_fnames))]))
 
     h_fnames = [i for i in fnames if i[-5:] == ".html"]
     html = dict(zip([i for i in fnames if i[-5:] == ".html"], ["<b>" + i[:-5] + "</b> " + get_html_title(i) for i in fnames if i[-5:] == ".html"]))

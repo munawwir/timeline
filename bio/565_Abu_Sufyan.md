@@ -1,6 +1,8 @@
 ### Abu Sufyan ibn Harb
-#### 565 - 653
+#### 565 - 653
 ##### [Timeline](https://munawwir.github.io/timeline)
+
+<!-- Tags: Sahaba -->
 
 **أبو سفيان بن حرب بن أمية بن عبد شمس**
 
