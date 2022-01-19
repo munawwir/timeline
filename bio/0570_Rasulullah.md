@@ -9,6 +9,12 @@ Muhammad ﷺ son of ‘Abdullah son of Abd al-Muttalib, son of Hashim, son of Ab
 
 His lineage traces back to Isma'il bin Ibrāhīm ع.
 
-*Grandfather* [Abd al-Muttalib](0497_Abd_al_Muttalib.html)  
-*Father* [Abdullah](0546_Abdullah.html)  
-*Mother* [Aminah](0549_Aminah.html)  
+*Grandfather* [Abd al-Muttalib](0497_Abd_al_Muttalib)  
+*Father* [Abdullah](0546_Abdullah)  
+*Mother* [Aminah](0549_Aminah)  
+*Wives*
+- [Khadijaؓ](0555_Khadija)
+
+### Lineage
+
+![](../img/prophet_tree.png)
