@@ -12,4 +12,4 @@ He was the uncle of Rasulullah ﷺ and a great enemy of Islam. He is condemned i
 
 event | page | summary
 -|-|-
-[Year of the Elephant](../events/0570_elephant) | 80-82 |
+[Rejection of Islam on mount Safa](../events/0610_Dawn_of_prophethood) | 110 |

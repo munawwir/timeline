@@ -3,6 +3,14 @@
 
 Khadīja was the first wife and first follower of [Rasulullah ﷺ](0570_Rasulullah). She was a successful businesswoman and leader.
 
+Their children:
+
+- Qasim ibn Muhammadؓ
+- [Zainabؓ](0601_Zainab)
+- [Rukayaؓ](0604_Rukayyah)
+- [Umm Kulthūmؓ](0605_Umm_Kulthum)
+- [Fātimahؓ](0606_Fatimah)
+
 ### Overview of involved events and pages
 
 event | page | summary

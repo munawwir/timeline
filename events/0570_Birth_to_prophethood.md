@@ -13,7 +13,7 @@ This chapter deals with the circumstances around Rasulullah ﷺ's life before pr
 - [**~584** Ḣarb al-Fijār is fought](0584_harb_al_fijar) (100-101).
 - In the next years, Rasulullah ﷺ focused on being a shepherd, where he learned alertness, responsiveness, kindness, and patience (101).
 - **595** Rasulullah ﷺ [marries](0595_marriage) [Khadijaؓ ](../bio/0555_Khadija) at the age of 25 (101-102).
-- **605** [Rasulullah ﷺ mediates conflict](0605_mediate) in Quraysh about the Ka'bah (102-103).
+- **606** [Rasulullah ﷺ mediates conflict](0606_mediate) in Quraysh about the Ka'bah (102-103).
 - **610** [Rasulullah ﷺ receives Wahī.](0610_dawn_of_prophethood)
 
 <!-- ### People mentioned
