@@ -8,3 +8,4 @@ Khadīja was the first wife and first follower of [Rasulullah ﷺ](0570_Rasulull
 event | page | summary
 -|-|-
 [Marriage to Rasulullah ﷺ](../events/0570_Birth_to_prophethood) | 101-102 | [See this](../events/0595_marriage)
+Khadīja accepts Islam | 108 | [610 CE](../events/0610_Dawn_of_prophethood)
