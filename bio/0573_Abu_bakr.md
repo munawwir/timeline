@@ -5,4 +5,4 @@
 
 event | page | summary
 -|-|-
-'Abū Bakrؓ fourth to accept Islam | 108 | [610 CE](../events/0610_Dawn_of_prophethood)
+[Early Islam](../events/0610_Dawn_of_prophethood) | 108, 112 | 'Abū Bakrؓ fourth to accept Islam in 610.\nHe bought [Bilal](0580_Bilal) in 613.
