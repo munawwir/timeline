@@ -9,7 +9,12 @@ This chapter deals with the circumstances around Rasulullah ﷺ's life before pr
 - [Rasulullah ﷺ's](../bio/0570_Rasulullah.html) grandfather, [Abd al-Muttalib](../bio/0497_Abd al_Muttalib.html), was a chief of the Quraysh.
 - [Abdullah](../bio/0546_Abdullah.html), his son, was married to [Aminah](../bio/0549_Aminah.html).
 - Their son was Muhammad ﷺ. He was born on the [Year of the Elephant]("0570_elephant.html")
+- He was suckled by [Thuwaybahؓ](../bio/Thuwaybah.html) for a few days.
+- He was then suckled by [Halimah](../bio/Halimah.html) and stayed with her tribe, Banu Sa'd, in his baby and toddler years.
 
+> 'I am the most Arab of you all.<br>I am of Quraysh, and I was suckled among Banu Sa‘d ibn Bakr.’<br>—Rasulullah ﷺ
+
+-  
 
 <!-- ### People mentioned
 
