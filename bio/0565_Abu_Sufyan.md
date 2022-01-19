@@ -9,4 +9,4 @@
 
 event | summary
 -|-
-[Badr](../events/624_Badr.html) | His caravan was part of why Badr happened (179-180).\n
+[Badr](../events/0624_Badr.html) | His caravan was part of why Badr happened (179-180).\n
