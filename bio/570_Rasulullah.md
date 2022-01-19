@@ -1,13 +1,14 @@
 ### Muhammad ﷺ
-#### 570 - 8 June 632
-##### [Timeline](https://munawwir.github.io/timeline)
+#### 570 August 29 - 632 June 8
 
-<!-- Tags: Sahaba -->
+**محمد ابن عبد الله ابن عبد المطلب ابن هاشم**
 
-**أبو سفيان بن حرب بن أمية بن عبد شمس**
+Muhammad ﷺ son of ‘Abdullah son of Abd al-Muttalib, son of Hashim, son of Abd Manaf, son of Qusayy, son of Kilab, son of Murrah, son of Ka'b, son of Lu’ayy, son of Ghalib, son of Fihr, son of Malik, son of al-Nadr, son of Kinanah, son of Khuzaymah, son of Mudrikah, son of Ilyas, son of Mudar, son of Nizar, son of Ma'add, son of Adnan
 
-### Overview of involved events and pages
+### Family
 
-event | summary
--|-|-
-[Badr](../events/Badr.html) | His caravan was part of why Badr happened (179-180).\n
+His lineage traces back to Isma'il bin Ibrāhīm ع.
+
+*Grandfather* [Abd al-Muttalib](497_Abd_al_Muttalib.html)  
+*Father* [Abdullah](546_Abdullah.html)  
+*Mother* [Aminah](549_Aminah.html)  
