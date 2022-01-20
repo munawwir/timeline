@@ -6,4 +6,4 @@ relative_links:
   collections: true
 exclude:
   - code/
-permalink: date
+permalink: none
