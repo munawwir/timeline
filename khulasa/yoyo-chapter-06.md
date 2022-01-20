@@ -1,7 +1,5 @@
-### Chapter 6
+# Chapter 6: From Birth to Prophethood
 ### Yoyo
-
-# From Birth to Prophethood
 
 At the tender age of 6, Rasulullah ﷺ's mother Aminah passed away. Two years later, Abdul Muttalib, his grandfather, passed away. Thus, at the age of 8, he was under the care of his uncle Abu Talib. When he was 9 years old, he went with Abu Talib on a caravan trip to Busra in Syria. In Syria, Abu Talib and Rasulullah ﷺ met a monk by the name of Bahira. Bahira welcomed their caravan. When he saw Rasulullah ﷺ, he told Abu Talib to take him ﷺ back and hide him from the Jews, and advised that he will become a man of great stature. Abu Talib heeded this advice.  
 This incident has been used by some arguments that claim the Islam is merely a made religion based on Christianity. The argument goes that in this meeting with Basira, Basira taught monotheism and instigated the foundation of Islam. Some arguments go even further and claim that all of the Quran was relayed in this moment. These notions are impossible for several reasons:

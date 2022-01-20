@@ -1,7 +1,5 @@
-### Chapter 5
+# Chapter 5: Makkah, the prophet's birth place ﷺ
 ### Yoyo
-
-# Makkah, the prophet's birth place ﷺ
 
 The Arabs respected the Ka'bah so much they didn't make rectangular houses or houses taller than the Ka'bah.
 

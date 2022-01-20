@@ -1,7 +1,5 @@
-### Chapter 2
+# Chapter 2: The Advent of Prophet Muhammad ﷺ
 ### Yoyo
-
-# The Advent of Prophet Muhammad ﷺ
 
 Yoyo  
 September 8, 2021

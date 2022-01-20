@@ -1,7 +1,5 @@
-### Chapter 7
+# Chapter 7: The Dawn of Prophethood
 ### Yoyo
-
-# The Dawn of Prophethood
 
 #### The beginning of Islam amongst the Ansar
 

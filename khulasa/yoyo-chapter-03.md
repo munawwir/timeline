@@ -1,7 +1,5 @@
-### Chapter 3
+# Chapter 3: The Arabian Peninsula: geography, ethnicity, and culture
 ### Yoyo
-
-# The Arabian Peninsula: geography, ethnicity, and culture
 
 Yoyo  
 September 10, 2021

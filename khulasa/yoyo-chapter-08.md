@@ -1,7 +1,5 @@
-### Chapter 8
+# Chapter 8: Difference between Makkan and Madinan societies
 ### Yoyo
-
-# Difference between Makkan and Madinan societies
 
 ### The Jews of Madinah
 

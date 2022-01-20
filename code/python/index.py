@@ -27,7 +27,7 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
   <body>
     <div class="wrapper">
       <header>
-        <h1><a href="https://munawwir.github.io/timeline/">As-Seerah Al-Munawwarah</a></h1>
+        <h1><a href="https://munawwir.github.io/timeline/">As-Seerah<br>Al-Munawwarah</a></h1>
 
         <p></p>
 
@@ -43,9 +43,13 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
 
         <p class="view"><a href="${home}events"><i>&mdash;Events</i></a></p>
 
+        <p class="view">Khulasa</p>
+
+        <p class="view"><a href="${home}khulasa"><i>&mdash;Khulasa</i></a></p>
+
       </header>
       <section>
-        <!-- <h1 id="As-Seerah-Al-Munawwarah">As-Seerah<br>Al-Munawwarah</h1> -->
+        <!-- <h1 id="As-Seerah-Al-Munawwarah">As-Seerah Al-Munawwarah</h1> -->
         <h4><a href="https://github.com/munawwir">Yoyo</a> at Darussalam<br>Chicago</h4>
 
         <p></br></p>
