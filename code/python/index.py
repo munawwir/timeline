@@ -61,7 +61,7 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
         </p>
 
         <p>
-          Edit on <a href="https://github.com/munawwir/timeline/tree/main/${header}">github</a>.
+          Edit on <a href="https://github.com/munawwir/timeline/tree/main${dir}">github</a>.
         </p>
 
       </section>
@@ -155,7 +155,7 @@ def main():
             return(find_home(home + "../"))
 
     f = open("index.html", "w")
-    f.write(Template(INDEX_TEMPLATE).render(names=fnames, header=header, links=links, home=find_home()))
+    f.write(Template(INDEX_TEMPLATE).render(names=fnames, header=header, links=links, dir=os.getcwd().split("timeline")[1], home=find_home()))
     f.close()
 
 
