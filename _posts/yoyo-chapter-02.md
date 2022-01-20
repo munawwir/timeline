@@ -2,6 +2,7 @@
 layout: post
 title:  "Chapter 2"
 categories: ["Khulasa"]
+tag: Chapter 2
 ---
 
 # The Advent of Prophet Muhammad ﷺ
