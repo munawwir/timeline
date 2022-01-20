@@ -37,11 +37,11 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
 
         <p class="view">Biographies</p>
 
-        <p class="view"><a href="../bio"><i>&mdash;All Biographies</i></a></p>
+        <p class="view"><a href="${home}bio"><i>&mdash;Biographies</i></a></p>
 
         <p class="view">Events</p>
 
-        <p class="view"><a href="../events"><i>&mdash;All Biographies</i></a></p>
+        <p class="view"><a href="${home}events"><i>&mdash;Events</i></a></p>
 
       </header>
       <section>
@@ -147,8 +147,15 @@ def main():
     fnames = [markdown[i] if i in markdown.keys() else i for i in fnames]
     fnames = [html[i] if i in html.keys() else i for i in fnames]
 
+    # Find home dir location using landmarks
+    def find_home(home="./"):
+        if all([i in os.listdir(home) for i in ["Makefile", ".git", "_config.yml"]]):
+            return(home)
+        else:
+            return(find_home(home + "../"))
+
     f = open("index.html", "w")
-    f.write(Template(INDEX_TEMPLATE).render(names=fnames, header=header, links=links))
+    f.write(Template(INDEX_TEMPLATE).render(names=fnames, header=header, links=links, home=find_home()))
     f.close()
 
 
