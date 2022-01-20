@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Chapter 2"
-categories: ["test"]
+categories: ["Khulasa"]
 tag: Chapter 2
 ---
 

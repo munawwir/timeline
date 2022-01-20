@@ -61,7 +61,7 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
         </p>
 
         <p>
-          Email <a href="mailto:yoyomunawwar@gmail.com">yoyomunawwar@gmail.com</a>.
+          Edit on <a href="https://github.com/munawwir/timeline/tree/main/${header}">github</a>.
         </p>
 
       </section>
