@@ -23,4 +23,7 @@ In 621, 12 men from the Ansar returned to meet Rasulullah ﷺ at 'Aqabah again. 
 - to obey Rasulullah ﷺ in Haqq
 - to associate nothing with Allah ﷻ
 
-[Mus'ab ibn Umayrؓ](../bio/0594_Musab) was sent back with them to teach the Qur'an and spread Islam.
+[Mus'ab ibn Umayrؓ](../bio/0594_Musab) was sent back with them to teach the Qur'an and spread Islam. Some Madīnis become Muslim, including:
+
+- [Sa'd ibn Mu'adh](../bio/0590_Sad)
+- [Usayd ibn Hudayr](../bio/Usayd_ibn_Hudayr)

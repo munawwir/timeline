@@ -3,6 +3,7 @@
 
 ### Overview of involved events and pages
 
-event | page | summary
+event | page | year | summary
 -|-|-
-Talhahؓ among the earliest to accept Islam | 108 | [610 CE](../events/0610_Dawn_of_prophethood)
+Talhahؓ among the earliest to accept Islam | 108 | [610 CE](../events/0610_Dawn_of_prophethood) |
+[Hijrah to Madīnah](../events/0622_10Hijrah) | 139 | ~622 |

@@ -1,9 +1,8 @@
-### Zayd ibn Hārithahؓ
-#### 581 - 629
+### Hamzah ibn 'Abd al-Muttalib Asadullahؓ
+#### 568 - 625 March 22
 
 ### Overview of involved events and pages
 
 event | page | year | summary
 -|-|-
-Zaydؓ third to accept Islam | 108 | [610 CE](../events/0610_Dawn_of_prophethood) |
 [Hijrah to Madīnah](../events/0622_10Hijrah) | 139 | ~622 |
