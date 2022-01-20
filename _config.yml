@@ -6,16 +6,3 @@ relative_links:
   collections: true
 exclude:
   - code/
-
-# Site settings
-title: Al-Seerah Al-Munawwir
-email: yoyomunawwar@gmail.com
-description: >
-  A Seerah wiki and timeline made for the Tanwir class.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://munawwir.github.io" # the base hostname & protocol for your site
-github_username:  munawwir
-git_repo: timeline
-
-# Build settings
-markdown: kramdown
