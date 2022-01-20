@@ -28,7 +28,7 @@ Mus'ab ibn Umayrؓ was sent back with them to teach the Qur'an and spread Islam.
 <img src="https://user-images.githubusercontent.com/90349598/134721146-959faa8d-a8ac-47f3-ac06-577f68c42770.png"
      alt="madinah" height="20%"/>
 
-The acceptance of Islam by the Aws and Khazraj in Yathrib was a huge milestone — the tribes of Makkah and Taif had rejected the message Rasulullah ﷺ brought, and the Aws and Khazraj became the first tribes to accept.
+The acceptance of Islam by the Aws and Khazraj in Yathrib was a huge milestone — the tribes of Makkah and Ta'if had rejected the message Rasulullah ﷺ brought, and the Aws and Khazraj became the first tribes to accept.
 
 1. The people of Aws and Khazraj were more soft-hearted than their counterparts elsewhere in Arabia
 
@@ -56,10 +56,10 @@ The Quraysh were far from revelation. They were deep into shirk and avoided the 
 |:--:|
 | <b>Madinah has natural terrain protection</b>|
 
-The western side of Madinah is walled off by mountains, while the east and south had foresty plantations. The only exposed side of Madinah was the north.
+The western side of Madinah was walled off by mountains, while the east and south had foresty plantations. The only exposed side of Madinah was the north.
 
 The Aws and Khazraj that resided in Yathrib were fierce, bold, and free. They lived alone and unmanaged for generations, and their skill in riding animals symbolized their free spritedness. They also had some blood ties to the Quraysh and Rasulullah ﷺ, as Abd' al-Muttalib's mother was from Banu'Adi ibn an-Najjar, a tribe in Yathrib.  
-The Aws and Khazrah had, however, historically been opposed to the Quraysh since they traced their geneology to Qahtan, while the Quraysh are from Adnan. Thus, the acceptance of both these tribes as _Ansar_ and the Makkans as _Muhajireen_ meant the resolution of many years of quarrel.
+The Aws and Khazrah had, however, historically been opposed to the Quraysh since they traced their genealogy to Qahtan, while the Quraysh are from Adnan. Thus, the acceptance of both these tribes as _Ansar_ and the Makkans as _Muhajireen_ meant the resolution of many years of quarrel.
 
 In summary, Madinah as the place of emigration was an important military and cultural advancement.
 

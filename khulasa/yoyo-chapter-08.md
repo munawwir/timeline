@@ -75,7 +75,7 @@ These tribes are originally from Yemen. In about 145 BC, the dam of Marib was se
 
 ![Saba17](https://user-images.githubusercontent.com/90349598/135143628-121da12d-2d44-4d29-a891-f303558dd3eb.PNG)
 
-There was also political unrest in Yemen. The Aws and Khazraj descend from the tribe of Azd, who migrated in waves to Madinah and other nothern areas (there were multiple times of unrest and the dam being broken in Yemen over the centuries, from 145 BCE until at least 6th century CE, until the advent of Islam and eventual conquer of Yemen).
+There was also political unrest in Yemen. The Aws and Khazraj descend from the tribe of Azd, who migrated in waves to Madinah and other northern areas (there were multiple times of unrest and the dam being broken in Yemen over the centuries, from 145 BCE until at least 6th century CE, until the advent of Islam and eventual conquer of Yemen).
 
 The Aws settled in the southeast of Madinah, while the Khazraj were north and central. The Aws were closer to fertile ground, as south of Madinah held forests and date trees, while Khazraj were in less fertile land.
 
@@ -86,7 +86,7 @@ Banu Khazraj consisted of four clans:
 - Mazin
 - Dinar
 
-Both the Aws and Khazraj had sizeable power, but it is uncertain exactly how many were in. At the time of the prophet ﷺ, the Arabs had the upper hand after a series of battles between the resident tribes in Madinah, the most recent of which was only 5 years before Hijrah.
+Both the Aws and Khazraj had sizable power, but it is uncertain exactly how many were in. At the time of the prophet ﷺ, the Arabs had the upper hand after a series of battles between the resident tribes in Madinah, the most recent of which was only 5 years before Hijrah.
 
 The enmity between the Aws, Khazraj, and the Jews is seen in the incident with Sha'th ibn Qays, one of the Jews. He passed by some Aws and Khazraj together in harmony, and in spite recited poems of the past to inflame them. The Aws and Khazraj indeed became inflamed and began bickering until Rasulullah ﷺ came and settled their hearts. Such were the passions they had in the past.
 

@@ -5,7 +5,7 @@
 
 The Arabs respected the Ka'bah so much they didn't make rectangular houses or houses taller than the Ka'bah.
 
-Makkah was sparsely populated, but Qusayy bin Kibab set up working infrastructure and basic civil engineering to create a village in Makkah. He and his family, as Quraysh, led Makkah and formed the house of Assembly, where the major Makkan tribes and allies of the Quraysh would meet. All major responsibities and honors were held by Qusayy, and once he passed away these responsibilities and honors were divided among families. The duties were akin to the responsibilities of office in government. Thus, Makkah became a bustling city with a rudimentary government.
+Makkah was sparsely populated, but Qusayy bin Kibab set up working infrastructure and basic civil engineering to create a village in Makkah. He and his family, as Quraysh, led Makkah and formed the house of Assembly, where the major Makkan tribes and allies of the Quraysh would meet. All major responsibilities and honors were held by Qusayy, and once he passed away these responsibilities and honors were divided among families. The duties were akin to the responsibilities of office in government. Thus, Makkah became a bustling city with a rudimentary government.
 
 ### Business & Economy in Makkah
 
@@ -23,7 +23,7 @@ The Makkans were also smart about their business. They targeted specific markets
 
 Both the _dinar_ and _dirham_ were coins valued by weight. In other words, these were coins of inherent value, in gold or silver, that were traded as currency. There was not a 'gold standard' for paper money, items were either traded via bartering (goods for goods) or for some amount of gold or silver in the form of coins.
 
-> **Dirham** silver coins of two types<br>بغلية، صردة دامية the Iranian coins<br>تبرية، بيزنتية the Byzantinian coins
+> **Dirham** silver coins of two types<br>بغلية، صردة دامية the Iranian coins<br>تبرية، بيزنتية the Byzantine coins
 
 > **Dinar** gold coins
 

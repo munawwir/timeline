@@ -8,7 +8,7 @@ September 10, 2021
 
 While previous chapters were focused on the results of the people of the book and _jahiliyyah_ in the major nations of the time and Arabia, this chapter is focused on the cultural, geographical, and ethnic makeup of Arabia.
 
-Arabia forms 5 main locations through geographical divisions: Hijaz lies in the west, from the mountains of Najd on the east and the Red Sea on the west and yemen bordering the south. Tihama lines the Red Sea in Hijaz. Yemen occupies the southwest corner. Najd was a vast expanse of desert from the mountains on the west to Bahrain in the east. And finally Arud also lies between Hijaz and Bahrain.
+Arabia forms 5 main locations through geographical divisions: Hijaz lies in the west, from the mountains of Najd on the east and the Red Sea on the west and Yemen bordering the south. Tihama lines the Red Sea in Hijaz. Yemen occupies the southwest corner. Najd was a vast expanse of desert from the mountains on the west to Bahrain in the east. And finally Arud also lies between Hijaz and Bahrain.
 
 The geographical setting, of vast desert, meant that the Arabs lived nomadic lives, relying on natural water sources whereever they could find it and digging deep wells to continue to live and let their livestock graze. This lifestyle meant the Arabs were hardy and tribal people. They were extremely loyal to their group, since they relied on each other for survival. They were hospitable to their allies and staunch against their enemies. After all, in life and death you trust those you trust deeply and fear and hate those you don't like or hold a grudge against deeply.
 

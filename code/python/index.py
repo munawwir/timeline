@@ -11,7 +11,7 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Begin Jekyll SEO tag v2.5.0 -->
-    <title>Seerah Timeline | Seerah-Timeline</title>
+    <title>As-Seerah Al-Munawwarah | As-Seerah-Al-Munawwarah</title>
     <meta name="generator" content="Jekyll v3.8.5" />
     <meta property="og:title" content="Timeline" />
     <meta property="og:locale" content="en_US" />
@@ -19,7 +19,7 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
     <meta property="og:url" content="https://munawwir.github.io/timeline/" />
     <meta property="og:site_name" content="Munawwir-Seerah-timeline" />
     <script type="application/ld+json">
-    {"@type":"WebSite","headline":"Seerah Timeline","url":"https://munawwir.github.io/timeline/","name":"Munawwir-Seerah-timeline","@context":"http://schema.org"}</script>
+    {"@type":"WebSite","headline":"As-Seerah Al-Munawwarah","url":"https://munawwir.github.io/timeline/","name":"Munawwir-Seerah-timeline","@context":"http://schema.org"}</script>
     <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/timeline/assets/css/style.css?v=d809c76e2f6e766a03e843906627c6d32ceb6981">
@@ -27,7 +27,7 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
   <body>
     <div class="wrapper">
       <header>
-        <h1><a href="https://munawwir.github.io/timeline/">Seerah Timeline</a></h1>
+        <h1><a href="https://munawwir.github.io/timeline/">As-Seerah Al-Munawwarah</a></h1>
 
         <p></p>
 
@@ -45,7 +45,7 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
 
       </header>
       <section>
-        <h1 id="Seerah-Timeline">Seerah Timeline</h1>
+        <!-- <h1 id="As-Seerah-Al-Munawwarah">As-Seerah Al-Munawwarah</h1> -->
         <h4><a href="https://github.com/munawwir">Yoyo</a> at Darussalam<br>Chicago</h4>
 
         <p></br></p>
