@@ -10,4 +10,4 @@ relative_links:
   collections: true
 exclude:
   - code/
-permalink: none
+permalink: /:categories/:title:output_ext

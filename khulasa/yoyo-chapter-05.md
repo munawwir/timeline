@@ -1,9 +1,5 @@
----
-layout: post
-title:  "Chapter 5"
-categories: ["Khulasa"]
-tag: Chapter 5
----
+### Chapter 5
+### Yoyo
 
 # Makkah, the prophet's birth place ﷺ
 

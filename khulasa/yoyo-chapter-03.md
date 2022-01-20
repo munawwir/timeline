@@ -1,9 +1,5 @@
----
-layout: post
-title:  "Chapter 3"
-categories: ["Khulasa"]
-tag: Chapter 3
----
+### Chapter 3
+### Yoyo
 
 # The Arabian Peninsula: geography, ethnicity, and culture
 
