@@ -1,6 +1,5 @@
 title: Al-Seerah Al-Munawwarah
 email: yoyomunawwar@gmail.com
-permalink: none
 github_username:  munawwir
 
 theme: jekyll-theme-minimal
@@ -11,3 +10,4 @@ relative_links:
   collections: true
 exclude:
   - code/
+permalink: none
