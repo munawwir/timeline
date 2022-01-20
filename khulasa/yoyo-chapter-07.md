@@ -28,7 +28,7 @@ Mus'ab ibn Umayrؓ was sent back with them to teach the Qur'an and spread Islam.
 
 The acceptance of Islam by the Aws and Khazraj in Yathrib was a huge milestone — the tribes of Makkah and Ta'if had rejected the message Rasulullah ﷺ brought, and the Aws and Khazraj became the first tribes to accept.
 
-1. The people of Aws and Khazraj were more soft-hearted than their counterparts elsewhere in Arabia
+##### 1— The people of Aws and Khazraj were more soft-hearted than their counterparts elsewhere in Arabia
 
 Unlike the people of Makkah, their tribes were free from the intolerant, aggressive, and ignorant perspectives of the Quraysh and those in Makkah. Rasulullah ﷺ himself has said, "The people of Yemen have come to you. They have the most tender manners and gentlest hearts." In the Quran, Allah ﷻ says:
 
@@ -36,11 +36,11 @@ Unlike the people of Makkah, their tribes were free from the intolerant, aggress
 |:--:|
 | <b>Al-Hashr ayah 9</b>|
 
-2. Continuous war led to exhaustion and acceptance
+##### 2— Continuous war led to exhaustion and acceptance
 
 Aws and Khazraj had been battling against each other and against the Jews for a long time. They were tired of war and desired peace. Just 5 years before Hijra, they had fought a battle of Bu'ath, and were exhausted and weary.
 
-3. They were neighbors to the Jews.
+##### 3— They were neighbors to the Jews.
 
 The Quraysh were far from revelation. They were deep into shirk and avoided the messages from Christians and Jews. The Aws and Khazraj, however, were near Jews who maintained some level of connection with their heritage. The Jews were in Madinah awaiting to find their prophesized prophet. Thus, these tribes were not foreign to the idea of revelation and scripture.
 
