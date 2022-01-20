@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-categories: ["Khulasa", "Yoyo"]
+title:  "Chapter 2"
+categories: ["Khulasa"]
 ---
 
 # The Advent of Prophet Muhammad ﷺ
