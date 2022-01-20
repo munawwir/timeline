@@ -1,7 +1,7 @@
 # Chapter 7: The Dawn of Prophethood
 ### Yoyo
 
-#### The beginning of Islam amongst the Ansar
+#### The beginning of Islam among the Ansar
 
 Rasulullah ﷺ met with the people of Khazraj from Yathrib at 'Aqabah. When he shared some ayaat of the Quran with them, they exclaimed that this was the messenger prophesized to them by the Jews of Yathrib. They accepted Islam and returned to their homes to spread the message.
 

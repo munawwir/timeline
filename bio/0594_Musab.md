@@ -5,6 +5,8 @@ He was one of the best dressed young man of Makkah. He practiced Islam in secret
 
 ### Overview of involved events and pages
 
-event | page | summary
+event | page | year | summary
 -|-|-
-[Persecution in the early days](../events/0613_open) | 112 | See above.
+[Persecution<br>in the early days](../events/0613_open) | 112 | | See above.
+[The first pledge<br>of 'Aqabah](../events/0621_aqabah) | 132-133 | 621 | He was sent to Madīnah after the pledge to teach them Islam. He stayed with [As'ad ibn Zurārah](Asad_ibn_Zurarah) while he was there. He gained the nickname "The Reader."
+[The second pledge<br>of 'Aqabah](../events/0622_05aqabah) | 137 | 622 | He returned at the time of Hajj to 'Aqabah for the second pledge.
