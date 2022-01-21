@@ -35,9 +35,12 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
 
         <!-- Insert all page links here -->
 
+        <p class="view"><a href="${home}wordcloud.html">Wordcloud</a></p>
+
         <p class="view">Biographies</p>
 
-        <p class="view"><a href="${home}bio"><i>&mdash;Biographies</i></a></p>
+        <p class="view"><a href="${home}bio/index.html"><i>&mdash;Biographies, sorted by birth</i></a></p>
+        <p class="view"><a href="${home}bio/sort_by_death.html"><i>&mdash;Biographies, sorted by death</i></a></p>
 
         <p class="view">Events</p>
 
