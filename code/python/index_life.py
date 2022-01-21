@@ -11,7 +11,7 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Begin Jekyll SEO tag v2.5.0 -->
-    <title>Seerah Timeline | Seerah-Timeline</title>
+    <title>As-Seerah Al-Munawwarah | As-Seerah-Al-Munawwarah</title>
     <meta name="generator" content="Jekyll v3.8.5" />
     <meta property="og:title" content="Timeline" />
     <meta property="og:locale" content="en_US" />
@@ -19,7 +19,7 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
     <meta property="og:url" content="https://munawwir.github.io/timeline/" />
     <meta property="og:site_name" content="Munawwir-Seerah-timeline" />
     <script type="application/ld+json">
-    {"@type":"WebSite","headline":"Seerah Timeline","url":"https://munawwir.github.io/timeline/","name":"Munawwir-Seerah-timeline","@context":"http://schema.org"}</script>
+    {"@type":"WebSite","headline":"As-Seerah Al-Munawwarah","url":"https://munawwir.github.io/timeline/","name":"Munawwir-Seerah-timeline","@context":"http://schema.org"}</script>
     <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/timeline/assets/css/style.css?v=d809c76e2f6e766a03e843906627c6d32ceb6981">
@@ -27,7 +27,7 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
   <body>
     <div class="wrapper">
       <header>
-        <h1><a href="https://munawwir.github.io/timeline/">Seerah Timeline</a></h1>
+        <h1><a href="https://munawwir.github.io/timeline/">As-Seerah<br>Al-Munawwarah</a></h1>
 
         <p></p>
 
@@ -37,12 +37,19 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
 
         <p class="view">Biographies</p>
 
-        <p class="view"><a href="bio/index.html"><i>&mdash;All Biographies</i></a></p>
-        <p class="view"><a href="bio/chart.html"><i>&mdash;Table View</i></a></p>
+        <p class="view"><a href="${home}bio"><i>&mdash;Biographies</i></a></p>
+
+        <p class="view">Events</p>
+
+        <p class="view"><a href="${home}events"><i>&mdash;Events</i></a></p>
+
+        <p class="view">Khulasa</p>
+
+        <p class="view"><a href="${home}khulasa"><i>&mdash;Khulasa</i></a></p>
 
       </header>
       <section>
-        <h1 id="Seerah-Timeline">Seerah Timeline</h1>
+        <!-- <h1 id="As-Seerah-Al-Munawwarah">As-Seerah Al-Munawwarah</h1> -->
         <h4><a href="https://github.com/munawwir">Yoyo</a> at Darussalam<br>Chicago</h4>
 
         <p></br></p>
@@ -51,6 +58,8 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
 
         <h2>${header}</h2>
 
+        <a href="sort_by_death.html">Sort people by death year</a><br>
+
         <p>
           % for i in range(len(names)):
             <a href="${links[i]}">${names[i]}</a><br>
@@ -58,7 +67,7 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
         </p>
 
         <p>
-          Email <a href="mailto:yoyomunawwar@gmail.com">yoyomunawwar@gmail.com</a>.
+          Edit on <a href="https://github.com/munawwir/timeline/tree/main${dir}">github</a>.
         </p>
 
       </section>
@@ -123,8 +132,7 @@ def main():
             pass
 
     header = (args.header if args.header else os.path.basename(args.directory))
-    fnames = [fname for fname in sorted(os.listdir(args.directory))
-              if fname not in EXCLUDED]
+    fnames = [fname for fname in sorted(os.listdir(args.directory)) if fname not in EXCLUDED]
     links = [i[:-3] + ".html" if i[-3:] == ".md" else i for i in fnames]    # replace markdown with html links
 
     if args.custom:
@@ -134,7 +142,9 @@ def main():
         fnames = ["<b>" + CUSTOM[i].split("|")[1] + "</b> " + " ".join(CUSTOM[i].split("|")[2:]) if i in CUSTOM.keys() else i for i in fnames]
 
     m_fnames = [i for i in fnames if i[-3:] == ".md"]
-    markdown = dict(zip(m_fnames, ["<b>" + open(m_fnames[i], "r", errors="ignore").read().split("\n")[1].split(" ")[1] + "</b> " + " ".join(open(m_fnames[i], "r", errors="ignore").read().split("\n")[0].split(" ")[1:]) for i in range(len(m_fnames))]))
+    m_content = [open(i, "r", errors="ignore").read() for i in m_fnames]
+    markdown = dict(zip(m_fnames, ["<b>" + m_content[i].split("\n")[1].split(" ")[1] + "</b> " + " ".join(m_content[i].split("\n")[0].split(" ")[1:]) for i in range(len(m_fnames))]))
+    # markdown = dict(zip(m_fnames, ["<b>" + m_content[i].split("\n")[1].split(" ")[1] + "</b> " + " ".join(m_content[i].split("\n")[0].split(" ")[1:]) + " — " + m_content[i].split("\n")[4] for i in range(len(m_fnames))]))
 
     h_fnames = [i for i in fnames if i[-5:] == ".html"]
     html = dict(zip([i for i in fnames if i[-5:] == ".html"], ["<b>" + i[:-5] + "</b> " + get_html_title(i) for i in fnames if i[-5:] == ".html"]))
@@ -142,8 +152,15 @@ def main():
     fnames = [markdown[i] if i in markdown.keys() else i for i in fnames]
     fnames = [html[i] if i in html.keys() else i for i in fnames]
 
+    # Find home dir location using landmarks
+    def find_home(home="./"):
+        if all([i in os.listdir(home) for i in ["Makefile", ".git", "_config.yml"]]):
+            return(home)
+        else:
+            return(find_home(home + "../"))
+
     f = open("index.html", "w")
-    f.write(Template(INDEX_TEMPLATE).render(names=fnames, header=header, links=links))
+    f.write(Template(INDEX_TEMPLATE).render(names=fnames, header=header, links=links, dir=os.getcwd().split("timeline")[1], home=find_home()))
     f.close()
 
 
