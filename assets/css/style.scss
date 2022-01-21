@@ -3,6 +3,13 @@
 
 @import "{{ site.theme }}";
 
+section {
+ width:750px;
+ float:left;
+ padding-bottom:50px;
+ padding-left: 300px
+}
+
 .inner {
   max-width: 100%;
 }
