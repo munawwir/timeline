@@ -7,4 +7,4 @@ One of the most cruel people to the Muslims, he was a chief of Banū Makhzūm
 
 event | page | summary
 -|-|-
-[Persecution by the Makkans](0613_open) | 116 |
+[Persecution by the Makkans](../events/0613_open) | 116 |
