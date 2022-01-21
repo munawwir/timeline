@@ -5,6 +5,6 @@
 
 ### Overview of involved events and pages
 
-event | page | summary
+event | page | year | summary
 -|-|-
-[](../events/0.html) |  | 
+[](../events/0.html) | |  | 

@@ -17,6 +17,10 @@
         <!-- <h1><a href="{{ "/" | absolute_url }}">Seerah Timeline</a></h1> -->
         <h1><a href="https://munawwir.github.io/timeline/">As-Seerah<br>Al-Munawwarah</a></h1>
 
+        {% if site.github.is_project_page %}
+        <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
+        {% endif %}
+
         <p class="view"><a href="/timeline/wordcloud.html">Wordcloud</a></p>
         <!-- <p class="view"><a href="old_timeline.html">Old timeline</a></p> -->
 
@@ -42,10 +46,6 @@
         {% endif %}
 
         <!-- <p>{{ site.description | default: site.github.project_tagline }}</p> -->
-
-        {% if site.github.is_project_page %}
-        <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
-        {% endif %}
 
         {% if site.github.is_user_page %}
         <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
