@@ -1,5 +1,5 @@
 ### Fātimah bint Muhammadؓ
-#### 606 -
+#### ~606 - ~632 August
 
 ### Overview of involved events and pages
 
