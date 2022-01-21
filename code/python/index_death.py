@@ -52,10 +52,10 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
 
       </header>
       <section>
-        <!-- <h1 id="As-Seerah-Al-Munawwarah">As-Seerah Al-Munawwarah</h1> -->
+        <!-- <h1 id="As-Seerah-Al-Munawwarah">As-Seerah Al-Munawwarah</h1>
         <h4><a href="https://github.com/munawwir">Yoyo</a> at Darussalam<br>Chicago</h4>
 
-        <p></br></p>
+        <p></br></p> -->
 
         <!-- Insert main content here -->
 
