@@ -58,7 +58,7 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
 
         <h2>${header}</h2>
 
-        <a href="sort_by_death.html">Sort people by death year</a><br>
+        <a href="sort_by_death.html">Sort people by death year</a><br><br>
 
         <p>
           % for i in range(len(names)):

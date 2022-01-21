@@ -58,7 +58,7 @@ INDEX_TEMPLATE = r"""<!DOCTYPE html>
 
         <h2>${header}</h2>
 
-        <a href="index.html">Sort people by birth year</a><br>
+        <a href="index.html">Sort people by birth year</a><br><br>
 
         <p>
           % for i in range(len(names)):
