@@ -5,4 +5,4 @@
 
 event | page | summary
 -|-|-
-[Persecution by the Makkans](0613_open) | 116 | He placed a camel fetus on the back of Rasulullah ﷺ while Rasulullah ﷺ was praying. [Fatimahؓ](0606_Fatimah) removed it.
+[Persecution by the Makkans](../events/0613_open) | 116 | He placed a camel fetus on the back of Rasulullah ﷺ while Rasulullah ﷺ was praying. [Fatimahؓ](0606_Fatimah) removed it.
