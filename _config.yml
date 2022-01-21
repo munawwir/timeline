@@ -11,3 +11,4 @@ relative_links:
 exclude:
   - code/
 permalink: /:categories/:title:output_ext
+baseurl: /timeline
